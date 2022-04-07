@@ -1,5 +1,5 @@
 [all]
-10.10.10.10
+10.30.55.202
 
 [all:vars]
 ansible_user=root

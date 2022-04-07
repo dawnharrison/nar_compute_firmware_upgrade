@@ -1,0 +1,19 @@
+---
+# Validate all prerequisite python libraries for AnsibleModules
+- name: Ensure we have all required python dependencies installed
+  include_tasks: validate_requirements_prereqs.yml
+  args:
+    apply:
+      delegate_to: localhost
+      run_once: True
+      tags:
+        - validate-requirements-prereqs
+
+- name: Hit /about API to collect mgmt bundle version, storage virtual ip and token url
+  include_tasks: collect_mnode_about_response.yml
+
+- name: Verify Admin access
+  args:
+    apply:
+      delegate_to: localhost
+  include_tasks: verify_admin_access_token.yml
